@@ -24,3 +24,18 @@ header{
   text-align: center;
   margin-top: 10px;
 }
+
+.itemCard img{
+  height: 200px;
+  width: 200px;
+}
+
+.itemCard {
+  border: solid 3px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 300px;
+  margin-right: 300px;
+  padding: 10px;
+}
