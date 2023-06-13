@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Item from "./Item";
+import { useParams } from "react-router-dom"
+import ItemDetail from "./ItemDetail"
+import { useEffect, useState } from "react"
 
-const ItemList = () => {
-    const  [items, setItems] = useState([])
+const ItemDetailContainer = () => {
+    const [item, setItem] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    
+    const {id} = useParams()
+
     useEffect(() => {
         const fetchData = () => {
             return new Promise((resolve) => {
@@ -43,27 +45,32 @@ const ItemList = () => {
                             categoryid: 3
                         }
                     ]
-                    resolve(fetchedItems)
+                    const selectedItem = fetchedItems.find((item) => item.id === Number(id))
+                    resolve(selectedItem)
                 }, 2000)
             })
         }
-        fetchData().then((fetchedItems) => {
-            setItems(fetchedItems)
-            setIsLoading(false)
+        fetchData().then((fetchedItem) => {
+            if (fetchedItem) {
+              setItem(fetchedItem)
+              setIsLoading(false)
+            } else {
+              setIsLoading(false)
+            }
         })
-    },[])
+    }, [id])
 
     return(
-        <div className="itemList">
+        <div>
             {isLoading ? (
-                <p>Cargando productos...</p>
-            ): (
-                items.map((item) => (
-                    <Item key={item.id} item={item} id={item.id}/>
-                ))
+                <p>Cargando producto...</p>
+            ) : item ? (
+                <ItemDetail item={item}/>
+            ) : (
+                <p>No hay productos disponibles</p>
             )}
         </div>
     )
 }
 
-export default ItemList
+export default ItemDetailContainer
