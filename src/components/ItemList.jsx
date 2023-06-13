@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
+import { useParams } from "react-router-dom";
 
 const ItemList = () => {
     const  [items, setItems] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const {categoryId} = useParams()
     
     useEffect(() => {
         const fetchData = () => {
             return new Promise((resolve) => {
+                setIsLoading(true)
                 setTimeout(() => {
                     const fetchedItems = [
                         {
@@ -16,7 +19,7 @@ const ItemList = () => {
                             precio: 700,
                             stock: 10,
                             img: "https://cdn.shopify.com/s/files/1/0186/5049/7124/products/1000000924280gJLBFORIGJERKCAHERO.png?v=1620250955",
-                            categoryid: 1
+                            categoryId: 1
                         },
                         {
                             id: 2,
@@ -24,7 +27,7 @@ const ItemList = () => {
                             precio: 800,
                             stock: 0,
                             img: "https://images.albertsons-media.com/is/image/ABS/960130428-C1N1?$ng-ecom-pdp-mobile$&defaultImage=Not_Available",
-                            categoryid: 2
+                            categoryId: 2
                         },
                         {
                             id: 3,
@@ -32,7 +35,7 @@ const ItemList = () => {
                             precio: 750,
                             stock: 5,
                             img: "https://www.jacklinks.com/shop/media/catalog/product/1/0/10000017985_3.25oz_jl_bf_teri_jerk_hero_2.png",
-                            categoryid: 3
+                            categoryId: 3
                         },
                         {
                             id:4,
@@ -40,10 +43,14 @@ const ItemList = () => {
                             precio: 750,
                             stock: 8,
                             img: "https://www.ubuy.com.ar/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFtNDYxeDRkakwuX1NMMTUwMF8uanBn.jpg",
-                            categoryid: 3
+                            categoryId: 3
                         }
                     ]
-                    resolve(fetchedItems)
+                    const filteredItems = categoryId
+                        ? fetchedItems.filter((item) => item.categoryId === Number(categoryId))
+                        : fetchedItems
+
+                    resolve(filteredItems)
                 }, 2000)
             })
         }
@@ -51,12 +58,12 @@ const ItemList = () => {
             setItems(fetchedItems)
             setIsLoading(false)
         })
-    },[])
+    },[categoryId])
 
     return(
         <div className="itemList">
             {isLoading ? (
-                <p>Cargando productos...</p>
+                <p className="loading">Cargando productos...</p>
             ): (
                 items.map((item) => (
                     <Item key={item.id} item={item} id={item.id}/>

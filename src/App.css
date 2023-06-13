@@ -40,3 +40,8 @@ header{
   margin-right: 300px;
   padding: 10px;
 }
+
+.loading {
+  text-align: center;
+  font-size: 50px;
+}
