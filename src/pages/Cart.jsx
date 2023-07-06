@@ -4,13 +4,23 @@ import { CartContext } from "../context/CartContext"
 const Cart = () => {
     const {cartList} = useContext(CartContext)
 
+
+
     return(
         <div className="carrito">
-           {cartList === [] ? (
+           {cartList.length === 0 ? (
            <p>Su carrito se encuentra vacio</p> ): (
-           cartList.map((item) => (
-                <h2 key={item.id}>{item.nombre}</h2>
-           )))    
+            <div>
+                <h2>Items del carrito:</h2>
+                    {cartList.map((item) => (
+                        <div key={item.id}>
+                            <h3>{item.nombre}</h3>
+                            <p>Precio unitario: {item.precio}</p>
+                            <p>Unidades: ${item.cantidad}</p>
+                        </div>
+                    ))}
+           </div>
+           )    
         }
         </div>
     )
