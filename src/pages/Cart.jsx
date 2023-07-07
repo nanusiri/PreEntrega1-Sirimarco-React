@@ -3,7 +3,15 @@ import { CartContext } from "../context/CartContext"
 import { Link } from "react-router-dom"
 
 const Cart = () => {
-    const {cartList, removeList, deleteItem} = useContext(CartContext)
+    const {cartList, removeList, deleteItem, calculateSubtotal} = useContext(CartContext)
+
+    const calculateTotal = () => {
+        const total = cartList.reduce((accumulator, product) => {
+          const subtotal = calculateSubtotal(product)
+          return accumulator + subtotal
+        }, 0)
+        return total
+      }
 
     return(
         <div className="carrito">
@@ -18,13 +26,15 @@ const Cart = () => {
             <div>
                 <h2>Items del carrito:</h2>
                     {cartList.map((item) => (
-                        <div key={item.id}>
+                        <div key={item.id} className="itemCart">
                             <h3>{item.nombre}</h3>
                             <p>Precio unitario: ${item.precio}</p>
                             <p>Unidades: {item.quantity}</p>
-                            <button onClick={deleteItem}>Eliminar producto del carrito</button>
+                            <p>Subtotal: ${calculateSubtotal(item)}</p>
+                            <button onClick={()=>deleteItem(item.id)}>Eliminar producto del carrito</button>
                         </div>
                     ))}
+                <h3>Total: ${calculateTotal()}</h3>    
                 <button onClick={removeList}>Limpiar carrito</button>
            </div>
            )    
