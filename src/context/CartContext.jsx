@@ -24,12 +24,15 @@ const CartProvider = ({children}) => {
         setCartList((prevList) => prevList.filter((cartItem) => cartItem.id !== itemId))
     }
 
-    const isInCart = (id) => 
-        cartList.find((product) => product.id === id) ? true : false
+    const isInCart = (id) => cartList.find((product) => product.id === id) ? true : false
     
-
+    const totalQuantity = () => {
+        const totalUnidades = cartList.reduce((total, product) => total + product.quantity, 0)
+        return totalUnidades
+    }
+    
     return(
-        <CartContext.Provider value={{cartList, addToCart, removeList, deleteItem, isInCart}}>
+        <CartContext.Provider value={{cartList, addToCart, removeList, deleteItem, isInCart, totalQuantity}}>
             <div>
                 {children}
             </div>
