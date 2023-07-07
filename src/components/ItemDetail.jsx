@@ -11,7 +11,7 @@ const ItemDetail = ({item}) => {
     const handleAddToCart = (count) => {
         setSelectedQuantity(count)
         setShowItemCount(false)
-        addToCart(item)
+        addToCart(item, count)
       }
 
     return(

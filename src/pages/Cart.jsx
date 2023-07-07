@@ -14,7 +14,7 @@ const Cart = () => {
                         <div key={item.id}>
                             <h3>{item.nombre}</h3>
                             <p>Precio unitario: ${item.precio}</p>
-                            <p>Unidades: {}</p>
+                            <p>Unidades: {item.quantity}</p>
                         </div>
                     ))}
            </div>
