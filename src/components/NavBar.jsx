@@ -14,7 +14,7 @@ const NavBar = () =>(
             <NavLink to="/category/3">Condimentados</NavLink>
             <NavLink to="/category/2">Picante</NavLink>
             <NavLink to="#">Contacto</NavLink>
-            <NavLink to="#"><CarWidget/></NavLink>
+            <NavLink to="/cart"><CarWidget/></NavLink>
         </nav>
     </header>
 )
