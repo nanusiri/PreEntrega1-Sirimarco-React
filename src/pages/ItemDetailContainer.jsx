@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import ItemDetail from "../components/ItemDetail"
 import { useEffect, useState } from "react"
 //import { fetchedItems } from "../components/Items" 
-import { collection, getDocs, getFirestore} from "firebase/firestore"
+import { doc, getDoc, getFirestore} from "firebase/firestore"
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState([])
@@ -19,11 +19,17 @@ const ItemDetailContainer = () => {
             })
         }*/
         const fetchData = async () => {
+            try{
             const db = getFirestore()
-            const itemsCollection = collection(db, "items")
+            const queryDoc = doc(db, "items", id)
             
-            const snapshot = await getDocs(itemsCollection)
-            return snapshot.docs.map(doc => ({id: doc.id, ...doc.data}))
+            const snapshot = await getDoc(queryDoc)
+            return ({id: snapshot.id, ...snapshot.data()})
+            }   catch (error) {
+                console.error(error)
+            }   finally {
+                setIsLoading(false)
+            }
         }
         fetchData().then((data) => {
             
