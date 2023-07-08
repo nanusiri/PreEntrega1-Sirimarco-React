@@ -6,6 +6,23 @@ import ItemDetailContainer from './pages/ItemDetailContainer'
 import ItemListContainer from './pages/ItemListContainer';
 import { CartProvider } from './context/CartContext';
 import Cart from './pages/Cart';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBAChbA88TgbIa8dj7Bg6KCEAeFrBf0XWk",
+  authDomain: "dry-meat.firebaseapp.com",
+  projectId: "dry-meat",
+  storageBucket: "dry-meat.appspot.com",
+  messagingSenderId: "336826861996",
+  appId: "1:336826861996:web:fe757fe46a3b0d71c99209"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 function App() {
   return (
