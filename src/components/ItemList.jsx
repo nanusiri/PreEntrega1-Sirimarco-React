@@ -22,19 +22,21 @@ const ItemList = () => {
                 }, 2000)
             })
         }*/
-        const fetchData = () => {
-            setTimeout(() => {
+        const fetchData = async () => {
+            try{
             const db = getFirestore()
 
             const categoryRef = categoryId
                 ? query(collection(db,"items"), where ("categoryId", "==", categoryId))
                 : collection(db, "items")
 
-            const snapshot = getDocs(categoryRef)
-                .then(resp => setItems(resp.docs.map(doc => ({id: doc.id, ...doc.data()}))))
-                .catch(err => console.log(err))
-                .finally(() => setIsLoading(false))
-            }, 1000)
+            const snapshot = await getDocs(categoryRef)
+            return snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+            }   catch (error) {
+                    console.error(error)
+            }   finally {
+                setIsLoading(false)
+            }
         }
         fetchData().then((fetchedItems) => {
             setItems(fetchedItems)
