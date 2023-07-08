@@ -18,17 +18,17 @@ const ItemDetailContainer = () => {
                 }, 2000)
             })
         }*/
-        const db = getFirestore()
-        const itemsCollection = collection(db, "items")
-        getDocs(itemsCollection).then((snapshot) => {
-            if (snapshot.size === 0) {
-                console.log("No results")
-            }
-            setItem(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})))
-        }) 
-        itemsCollection().then((fetchedItem) => {
-            if (fetchedItem) {
-              setItem(fetchedItem)
+        const fetchData = async () => {
+            const db = getFirestore()
+            const itemsCollection = collection(db, "items")
+            
+            const snapshot = await getDocs(itemsCollection)
+            return snapshot.docs.map(doc => ({id: doc.id, ...doc.data}))
+        }
+        fetchData().then((data) => {
+            console.log(data)
+            if (data) {
+              setItem(data)
               setIsLoading(false)
             } else {
               setIsLoading(false)
