@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
             return snapshot.docs.map(doc => ({id: doc.id, ...doc.data}))
         }
         fetchData().then((data) => {
-            console.log(data)
+            
             if (data) {
               setItem(data)
               setIsLoading(false)
