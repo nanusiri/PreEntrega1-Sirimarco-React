@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom"
 import ItemDetail from "../components/ItemDetail"
 import { useEffect, useState } from "react"
-//import { fetchedItems } from "../components/Items" 
 import { doc, getDoc, getFirestore} from "firebase/firestore"
 
 const ItemDetailContainer = () => {
@@ -10,14 +9,6 @@ const ItemDetailContainer = () => {
     const {id} = useParams()
 
     useEffect(() => {
-        /*const fetchData = () => {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    const selectedItem = fetchedItems.find((item) => item.id === Number(id))
-                    resolve(selectedItem)
-                }, 2000)
-            })
-        }*/
         const fetchData = async () => {
             try{
             const db = getFirestore()
