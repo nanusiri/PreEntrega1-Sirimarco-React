@@ -18,15 +18,17 @@ const Cart = () => {
             ): (
             <div>
                 <h2>Items del carrito:</h2>
-                    {cartList.map((item) => (
-                        <div key={item.id} className="itemCart">
-                            <h3>{item.nombre}</h3>
-                            <p>Precio unitario: ${item.precio}</p>
-                            <p>Unidades: {item.quantity}</p>
-                            <p>Subtotal: ${calculateSubtotal(item)}</p>
-                            <button onClick={()=>deleteItem(item.id)}>Eliminar producto del carrito</button>
-                        </div>
-                    ))}
+                    <div className="contenedorCarrito">
+                        {cartList.map((item) => (
+                            <div key={item.id} className="itemCart">
+                                <h3 className="tituloCarrito">{item.nombre}</h3>
+                                <p>Precio unitario: ${item.precio}</p>
+                                <p>Unidades: {item.quantity}</p>
+                                <p>Subtotal: ${calculateSubtotal(item)}</p>
+                                <button onClick={()=>deleteItem(item.id)}>Eliminar producto del carrito</button>
+                            </div>
+                        ))}
+                    </div>
                 <h3>Total: ${calculateTotal()}</h3>    
                 <button onClick={removeList}>Limpiar carrito</button>
            </div>

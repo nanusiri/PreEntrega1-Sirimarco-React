@@ -53,48 +53,54 @@ export const Checkout = () => {
                 </>
             ):(
                 <>
-                    <h2>Datos del comprador</h2>
+                    
                     
                     <form id="checkout-form">
-                        <div className="">
+                    <h2 className="tituloForm">Ingrese sus datos para realizar su compra</h2>
+                        <div className="campos">
                             <label>Nombre y Apellido</label>
                             <input
                             onChange={handleChange}
                             value={formValues.name}
                             type="text" 
                             name="name"
+                            className="field"
                             />
                         </div>
-                        <div className="">
+                        <div className="campos">
                             <label>Teléfono</label>
                             <input
                             onChange={handleChange}
                             value={formValues.phone}
                             type="text"
                             name="phone"
+                            className="field"
                             />
                         </div>
-                        <div className="">
+                        <div className="campos">
                             <label>Email</label>
                             <input
                             onChange={handleChange}
                             value={formValues.email}
                             type="email"
                             name="email"
+                            className="field"
                             />
                         </div>
-                        <div className="">
+                        <div className="campos">
                             <label>Vuelva a ingresar su Email</label>
                             <input
                             onChange={handleChange}
                             value={formValues.email2}
                             type="email"
                             name="email2"
+                            className="field"
                             />
                         </div>
                         <button
                             type="button"
                             onClick={handleCheckout}
+                            className="botonForm"
                         >
                             Finalizar compra
                         </button>

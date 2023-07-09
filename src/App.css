@@ -48,5 +48,37 @@ header{
 
 .itemCart{
   border: solid 2px;
-  
+  padding: 20px;
+}
+
+.tituloCarrito{
+  font-size: 23px;
+}
+
+.contenedorCarrito{
+  display: flex;
+  padding: 5px;
+}
+
+#checkout-form{
+  margin: 0 auto;
+  width: 300px;
+  border: solid 2px;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campos{
+  display: flex;
+  flex-direction: column;
+}
+
+.botonForm{
+  margin-top: 8px;
+}
+
+.tituloForm{
+  font-size: 20px;
 }
