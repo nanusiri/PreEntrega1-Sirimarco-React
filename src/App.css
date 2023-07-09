@@ -68,6 +68,7 @@ header{
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  background-color: rgba(112, 24, 42, 0.706);
 }
 
 .campos{
