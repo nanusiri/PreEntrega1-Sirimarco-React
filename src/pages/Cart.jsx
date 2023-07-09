@@ -1,17 +1,10 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import { Link } from "react-router-dom"
+import { Checkout } from "../components/Checkout"
 
 const Cart = () => {
-    const {cartList, removeList, deleteItem, calculateSubtotal} = useContext(CartContext)
-
-    const calculateTotal = () => {
-        const total = cartList.reduce((accumulator, product) => {
-          const subtotal = calculateSubtotal(product)
-          return accumulator + subtotal
-        }, 0)
-        return total
-      }
+    const {cartList, removeList, deleteItem, calculateSubtotal, calculateTotal} = useContext(CartContext)
 
     return(
         <div className="carrito">
@@ -39,6 +32,7 @@ const Cart = () => {
            </div>
            )    
         }
+        <Checkout/>
         </div>
     )
 }

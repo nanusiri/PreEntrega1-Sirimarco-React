@@ -35,8 +35,22 @@ const CartProvider = ({children}) => {
         return product.precio * product.quantity
     }
 
+    const calculateTotal = () => {
+        const total = cartList.reduce((accumulator, product) => {
+          const subtotal = calculateSubtotal(product)
+          return accumulator + subtotal
+        }, 0)
+        return total
+    }
+
+    const redirect = () => {
+        setTimeout(() => {
+            window.location = origin
+        }, 1000)
+    }
+    
     return(
-        <CartContext.Provider value={{cartList, addToCart, removeList, deleteItem, isInCart, totalQuantity, calculateSubtotal}}>
+        <CartContext.Provider value={{cartList, addToCart, removeList, deleteItem, isInCart, totalQuantity, calculateSubtotal, calculateTotal, redirect}}>
             <div>
                 {children}
             </div>
